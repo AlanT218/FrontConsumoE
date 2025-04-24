@@ -1,8 +1,108 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Inicio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>S.I Consumo</title>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <!-- Fuente personalizada TAN Headline desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tan+Headline&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Contenedor principal con diseño en dos columnas -->
+    <div class="main-container">
+
+        <!-- Sección izquierda: título y descripción del sistema -->
+        <div class="left-section">
+
+            <!-- Cuadro con el título principal -->
+            <div class="cuadro2">
+                <h1>Un S.I para la gestión del consumo en el hogar</h1>
+            </div>
+
+            <!-- Cuadro con el texto descriptivo -->
+            <div class="cuadro3">
+                <p>
+                    Este sistema de información permite a los hogares monitorear y controlar el consumo eléctrico de manera eficiente, promoviendo el ahorro energético y la sostenibilidad.
+                </p>
+            </div>
+        </div>
+
+        <!-- Sección derecha: imagen representativa del sistema -->
+        <div class="right-section">
+            <div class="cuadro1">
+                <!-- Imagen ilustrativa del sistema -->
+                <img src="~/Img/8322803.jpg" alt="Ilustración energía">
+            </div>
+        </div>
+    </div>
+
+    <!-- Estilos personalizados para la vista -->
+    <style>
+        /* Aplicación de fuente general, color de fondo y reset de márgenes */
+        body {
+            margin: 0;
+            font-family: 'Tan Headline', sans-serif;
+            background-color: #c6f0d1;
+        }
+
+        /* Contenedor principal con disposición horizontal y padding */
+        .main-container {
+            display: flex;
+            padding: 2rem;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* Sección izquierda con elementos apilados verticalmente */
+        .left-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 2rem;
+            padding-right: 2rem;
+        }
+
+        /* Estilos del título */
+        .cuadro2 h1 {
+            font-size: 2.8rem;
+            text-shadow: 1px 1px #555;
+            color: white;
+            margin: 0;
+        }
+
+        /* Estilos del párrafo descriptivo */
+        .cuadro3 p {
+            font-size: 1.2rem;
+            color: #222;
+            margin: 0;
+        }
+
+        /* Sección derecha alineada al centro para la imagen */
+        .right-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Cuadro que contiene la imagen */
+        .cuadro1 {
+            max-width: 400px;
+            text-align: center;
+        }
+
+            /* Imagen con bordes redondeados y tamaño ajustado */
+            .cuadro1 img {
+                width: 100%;
+                border-radius: 20px;
+            }
+    </style>
+
+</body>
+</html>

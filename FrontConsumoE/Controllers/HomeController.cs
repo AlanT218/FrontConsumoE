@@ -13,13 +13,7 @@ namespace FrontConsumoE.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public IActionResult CreateUser()
-        {
-            return View();
-        }
-
-
+        
         public IActionResult Index()
         {
             return View();
