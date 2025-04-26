@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "HomeUser";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<div class="container mt-4">
+    <h2>Bienvenido a la página de usuarios</h2>
+    <button id="btn-obtener-usuarios" class="btn btn-success mb-3">Obtener Usuarios</button>
+    <div id="usuarios-lista"></div>
+</div>
+
+@section Scripts {
+    <script src="~/js/validadorSesion.js"></script>
+     <!-- Incluir el archivo de JS para listar los usuarios -->
+    <script src="~/js/listarUsuarios.js"></script>
+}

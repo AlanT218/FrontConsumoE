@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5 text-center">
+    <h1 class="text-danger">¡Ups! Algo salió mal.</h1>
+    <p class="lead">@ViewData["ErrorMessage"]</p>
+    <a href="/User/Login" class="btn btn-primary mt-4">Ir al Login</a>
+</div>
+

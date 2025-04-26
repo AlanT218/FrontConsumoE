@@ -13,7 +13,26 @@ namespace FrontConsumoE.Controllers
             _logger = logger;
         }
 
-        
+        [Route("Home/Error")]
+        public IActionResult Error(string mensaje = "Ocurrió un error inesperado")
+        {
+            ViewData["ErrorMessage"] = mensaje;
+            return View(); // 
+        }
+
+        [Route("Error/{statusCode}")]
+        public IActionResult HandleError(int statusCode)
+        {
+            if (statusCode == 404)
+            {
+                ViewData["ErrorMessage"] = "Lo sentimos, la página que buscas no existe.";
+                return View("Error"); // Redirige error
+            }
+
+            // Otros errores genéricos
+            ViewData["ErrorMessage"] = "Ha ocurrido un error inesperado.";
+            return View("Error");
+        }
         public IActionResult Index()
         {
             return View();
@@ -29,5 +48,6 @@ namespace FrontConsumoE.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }
