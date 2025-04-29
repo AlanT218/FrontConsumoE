@@ -58,7 +58,6 @@ function mostrarCasas(casas) {
                 <img src="/img/${imagen}" alt="${casa.categoria}">
                 <p><strong>Nombre de la Casa:</strong> ${casa.nombre}</p>
                 <p><strong>Categoría:</strong> ${casa.categoria}</p>
-                <p><strong>ID Hogar:</strong> ${casa.id}</p>
                 <button class="btn-detalles" onclick="seleccionarCasa(${casa.id})">Detalles</button>
             </div>
         `;

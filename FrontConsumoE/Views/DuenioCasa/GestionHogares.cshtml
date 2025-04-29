@@ -3,18 +3,68 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-<div class="container mt-4">
-    <h2>Bienvenido a la página de casas</h2>
-    <button id="btn-obtener-casas" class="btn btn-success mb-3">Obtener Casas</button>
-    <div id="casas-lista" class="casas-container"></div>
-</div>
+<div id="contene">
+    <div id="bombi">
+        <img src="~/Img/b1.png" alt="logo" id="bombillo" class="logo-img"/>
 
+    </div>
+    <div id="figura" class="container mt-4">
+        <h2>Bienvenido a la página de casas</h2>
+        <button id="btn-obtener-casas" class="btn btn-success mb-3">Obtener Casas</button>
+    </div>
+</div>
+<div id="casas-lista" class="casas-container"></div>
 @section Scripts {
     <script src="~/js/validadorSesion.js"></script>
     <script src="~/js/Dc/listarCasas.js"></script>
 }
 
 <style>
+    #contene {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        padding: 20px;
+    }
+
+    #bombi {
+        flex-shrink: 0; /* No deforma el bombillo */
+    }
+
+    #bombillo {
+        width: 130px;
+        height: auto;
+    }
+
+    #figura {
+        display: flex;
+        align-items: center;
+        background-color: #d4f3d4;
+        padding: 20px 30px;
+        border-radius: 0 10px 10px 0;
+        position: relative;
+        min-height: 100px;
+    }
+
+        #figura::before {
+            content: "";
+            position: absolute;
+            left: -20px;
+            width: 0;
+            height: 0;
+            border-top: 30px solid transparent;
+            border-bottom: 30px solid transparent;
+            border-right: 20px solid #d4f3d4;
+        }
+
+        #figura h2 {
+            font-size: 1rem;
+            margin: 0;
+            margin-right: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+
     .casas-container {
         display: flex;
         flex-wrap: wrap;

@@ -4,6 +4,10 @@ body {
     font-family: "M PLUS Rounded 1c", sans-serif;
     font-size: 1.8em;
 }
+h1 {
+    font-size:3em;
+    text-shadow: 1px 1px 3px gray;
+}
 html {
   font-size: 14px;
 }

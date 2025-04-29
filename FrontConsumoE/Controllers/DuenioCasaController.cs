@@ -12,6 +12,10 @@ namespace FrontConsumoE.Controllers
         {
             return View();
         }
+        public IActionResult Menu()
+        {
+            return View();
+        }
         public IActionResult GestionElec()
         {
             return View();

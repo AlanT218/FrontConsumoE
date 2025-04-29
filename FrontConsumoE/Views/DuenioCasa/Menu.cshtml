@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewData["Title"] = "Menu";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.I Electricidad</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>S.I Electricidad</h1>
+        <div class="card-container">
+            <div class="card">
+                <img src="~/Img/añadir.png" alt="Añadir Electrodomésticos">
+                <p>Añadir Electrodomésticos</p>
+            </div>
+            <div class="card">
+                <img src="~/Img/act-delete.png" alt="Actualizar y eliminar Electrodomésticos">
+                <p>Actualizar y eliminar Electrodomésticos</p>
+            </div>
+            <div class="card">
+                <img src="~/Img/gestion.png" alt="Gestión Consumo">
+                <p>Gestión Consumo</p>
+            </div>
+        </div>
+    </div>
+    <style>
+        body {
+            background-color: #bdebc3; /* Color de fondo verde claro */
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 250px;
+            
+        }
+
+            .card img {
+                width: 150px;
+                height: 150px;
+                margin: auto;
+            }
+
+            .card p {
+                font-size: 18px;
+                margin-top: 10px;
+            }
+    </style>
+</body>
+</html>
