@@ -8,6 +8,10 @@ namespace FrontConsumoE.Controllers
         {
             return View();
         }
+        public IActionResult MenuIndex()
+        {
+            return View();
+        }
         public IActionResult GestionHogares()
         {
             return View();
@@ -17,6 +21,18 @@ namespace FrontConsumoE.Controllers
             return View();
         }
         public IActionResult GestionElec()
+        {
+            return View();
+        }
+        public IActionResult ActuElimiElec()
+        {
+            return View();
+        }
+        public IActionResult ActualizarVista()
+        {
+            return View();
+        }
+        public IActionResult GestionConsumo()
         {
             return View();
         }

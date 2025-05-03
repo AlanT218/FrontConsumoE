@@ -16,6 +16,33 @@ html {
     font-size: 16px;
   }
 }
+table {
+    width: 105%;
+    margin: auto;
+    border-radius: 10px;
+    overflow: hidden;
+    border-collapse: separate;
+    border-spacing: 2px;
+}
+
+thead {
+    background-color: #78a890;
+    color: white;
+    text-shadow: -1.5px -1.5px 0 gray;
+    border-radius: 12px;
+}
+
+th {
+    border: 0.3px solid #545454;
+}
+
+td {
+    background-color: #9fb2a9;
+}
+
+th, td {
+    padding: 10px;
+}
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
@@ -29,3 +56,25 @@ html {
 body {
   margin-bottom: 60px;
 }
+.btn-volver {
+    background-color: #005b0c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .btn-volver:hover {
+        background-color: white;
+        color: #005b0c;
+        border: 3px solid #005b0c;
+    }

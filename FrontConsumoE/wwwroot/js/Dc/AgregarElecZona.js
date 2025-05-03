@@ -1,4 +1,5 @@
 ﻿const token = localStorage.getItem("token");
+
 // Al cargar la página, inicializa las funciones para cargar electrodomésticos y zonas
 document.addEventListener("DOMContentLoaded", () => {
     cargarElectrodomesticos();
@@ -21,9 +22,9 @@ async function cargarElectrodomesticos() {
 
         const electrodomesticos = await response.json();
 
-        const html = electrodomesticos.map(electro => `
-            <option value="${electro.value}">${electro.text}</option>
-        `).join("");
+        const html = electrodomesticos.map(electro =>
+            `<option value="${electro.Value || electro.value || electro.IdElectro}">${electro.Text || electro.text || electro.Nombre}</option>`
+        ).join("");
 
         electroSelect.innerHTML = html;
     } catch (error) {
@@ -47,9 +48,9 @@ async function cargarZonas() {
 
         const zonas = await response.json();
 
-        const html = zonas.map(zona => `
-            <option value="${zona.value}">${zona.text}</option>
-        `).join("");
+        const html = zonas.map(zona =>
+            `<option value="${zona.Value || zona.value || zona.IdZona}">${zona.Text || zona.text || zona.Nombre}</option>`
+        ).join("");
 
         zonaSelect.innerHTML = html;
     } catch (error) {
@@ -61,7 +62,7 @@ async function cargarZonas() {
 async function agregarZonaElectrodomestico() {
     const electro = document.getElementById("electro").value;
     const zona = document.getElementById("zona").value;
-    const consumo = document.getElementById("consumo").value;
+    const consumo = parseFloat(document.getElementById("consumo").value);
 
     // Obtener el ID del hogar seleccionado desde localStorage
     const idHogar = localStorage.getItem("id_hogar");
@@ -71,7 +72,7 @@ async function agregarZonaElectrodomestico() {
         return;
     }
 
-    if (!electro || !zona || !consumo || consumo <= 0) {
+    if (!electro || !zona || isNaN(consumo) || consumo <= 0) {
         alert("Por favor completa todos los campos correctamente.");
         return;
     }
@@ -80,7 +81,7 @@ async function agregarZonaElectrodomestico() {
         idZona: parseInt(zona),
         idElectro: parseInt(electro),
         idHogar: parseInt(idHogar), // Usar el ID del hogar seleccionado
-        consumo: parseFloat(consumo),
+        consumo: consumo,
         estado: false // Estado siempre es falso
     };
 
@@ -96,11 +97,14 @@ async function agregarZonaElectrodomestico() {
 
         if (response.ok) {
             alert("Electrodoméstico agregado correctamente.");
+            // Opción: limpiar formulario después de agregar
+            document.getElementById("gestion-form").reset();
         } else {
             alert("Error al agregar el electrodoméstico.");
         }
     } catch (error) {
         console.error("Error al agregar el electrodoméstico:", error);
+        alert("Error al agregar el electrodoméstico. Revisa la consola.");
     }
 }
 
