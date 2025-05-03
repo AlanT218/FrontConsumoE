@@ -71,7 +71,7 @@ function seleccionarCasa(idHogar) {
     localStorage.setItem("id_hogar", idHogar);
     // Puedes quitar el alert si quieres que se vea más fluido
     // alert(`Hogar seleccionado con ID: ${idHogar}`);
-    window.location.href = "/DuenioCasa/GestionElec";
+    window.location.href = "/DuenioCasa/Menu";
 }
 
 // Agregar el evento de clic al botón

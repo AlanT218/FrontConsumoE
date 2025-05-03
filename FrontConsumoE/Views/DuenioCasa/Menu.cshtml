@@ -17,19 +17,23 @@
         <div class="card-container">
             <div class="card">
                 <img src="~/Img/añadir.png" alt="Añadir Electrodomésticos">
-                <p>Añadir Electrodomésticos</p>
+                <button class="card-title" onclick="window.location.href='/Dueniocasa/GestionElec';">Añadir Electrodomésticos</button>
             </div>
             <div class="card">
                 <img src="~/Img/act-delete.png" alt="Actualizar y eliminar Electrodomésticos">
-                <p>Actualizar y eliminar Electrodomésticos</p>
+                <button class="card-title" onclick="window.location.href='/Dueniocasa/ActuElimiElec';">Actualizar y eliminar Electrodomésticos</button>
             </div>
             <div class="card">
                 <img src="~/Img/gestion.png" alt="Gestión Consumo">
-                <p>Gestión Consumo</p>
+                <button class="card-title" onclick="window.location.href='/Dueniocasa/GestionConsumo';">Gestión Consumo de Energia</button>
             </div>
         </div>
     </div>
-    <style>
+    <button class="btn-volver" onclick="window.history.back()">⮐</button>
+
+    <link rel="stylesheet" href="styles.css">
+
+ <style>
         body {
             background-color: #bdebc3; /* Color de fondo verde claro */
             font-family: Arial, sans-serif;
@@ -45,20 +49,23 @@
             font-weight: bold;
             margin-bottom: 30px;
         }
-
+        /* Contenedor de tarjetas */
         .card-container {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 45px;
         }
 
+        /* Tarjetas */
         .card {
-            background-color: white;
-            border-radius: 10px;
+            background-color: #d9d9d9; /* Interior gris claro */
+            border: 10px solid white; /* Margen blanco grueso */
+            border-radius: 10px; /* Bordes redondeados */
             padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 250px;
-            
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+            width: 250px; /* Tamaño constante */
+            text-align: center;
+            transition: transform 0.3s ease; /* Efecto suave */
         }
 
             .card img {
@@ -67,10 +74,27 @@
                 margin: auto;
             }
 
-            .card p {
-                font-size: 18px;
-                margin-top: 10px;
+        /* Botón de título */
+        .card-title {
+            background-color: white;
+            border: none;
+            color: black;
+            font-weight: bold;
+            border-radius: 10px;
+            font-size: 18px;
+            padding: 10px 0.5px;
+            margin-top: 15px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+            /* Hover dinámico en el botón */
+            .card-title:hover {
+                background-color: #bdebc3; /* Cambia a verde claro */
+                color: white; /* Texto blanco en hover */
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Intensifica sombra */
             }
+
     </style>
 </body>
 </html>

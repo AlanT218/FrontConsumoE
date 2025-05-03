@@ -1,26 +1,25 @@
 ﻿
 @{
-    ViewData["Title"] = "GestionElec";
+    ViewData["Title"] = "ActualizarVista";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
-
 <link rel="stylesheet" href="/css/site.css">
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Electrodomésticos</title>
-    
+    <title>Actualizar Electrodoméstico</title>
 </head>
 <body>
-    <h1 class="titulo">Añadir Electrodomésticos</h1>
+    <h1 class="titulo">Actualizar Electrodoméstico</h1>
+
     <div class="contenedor">
-        <!-- Formulario principal -->
-        <form id="gestion-form">
+        <!-- Formulario de actualización -->
+        <form id="form-actualizar">
             <div class="form-group">
-                <label for="electro">Electrodoméstico:</label>
-                <select id="electro" required>
+                <label for="electrodomestico">Electrodoméstico:</label>
+                <select id="electrodomestico" required>
                     <option value="">Seleccione un electrodoméstico</option>
                 </select>
             </div>
@@ -37,19 +36,20 @@
                 <input type="number" id="consumo" min="1" required>
             </div>
 
-            <button type="button" id="agregar-boton" class="btn-detalles">Agregar</button>
+            <button type="submit" class="btn-actualizar">Actualizar</button>
         </form>
+
     </div>
     <button class="btn-volver" onclick="window.history.back()">⮐</button>
 
-    <script src="~/js/Dc/AgregarElecZona.js"></script>
-    
+    <script src="~/js/Dc/actualizarZonaElectro.js"></script>
+
     <style>
         body {
             background-image: url('/Img/fondo.jpeg');
-            background-size: cover; /* para cubrir toda la pantalla */
+            background-size: cover;
             background-repeat: no-repeat;
-            background-attachment: fixed; /* para que no se mueva al hacer scroll */
+            background-attachment: fixed;
             background-position: center;
         }
 
@@ -75,11 +75,8 @@
             margin: auto
         }
 
-        
-
         .form-group {
             margin-bottom: 15px;
-            
         }
 
         label {
@@ -94,29 +91,25 @@
             border-radius: 4px;
         }
 
-        .btn-detalles {
-            background-color: #00bf63; /* Color del botón */
-            border: 2px solid #00bf63;
-            color: white;
+        .btn-actualizar {
+            background-color: #f9d423; /* Amarillo */
+            border: 2px solid #f9d423;
+            color: #000;
             font-weight: bold;
             font-size: 1.2rem;
             padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 10px; /* Bordes redondeados */
-            display: block; /* Cambia a bloque para centrar con margin */
+            border-radius: 10px;
+            display: block;
+            margin: 15px auto;
+            width: 135px;
             transition: all 0.3s ease;
-            margin: 15px auto; /* Centrado horizontal y espaciado superior */
-            width: 135px; /* Ancho del botón */
         }
 
-            .btn-detalles:hover {
+            .btn-actualizar:hover {
                 background-color: white;
-                border: 2px solid #00bf63;
-                color: #00bf63;
+                border: 2px solid #f9d423;
+                color: #f9d423;
             }
-
-
     </style>
-    
 </body>
 </html>
