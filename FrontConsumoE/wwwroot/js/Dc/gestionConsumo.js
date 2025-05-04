@@ -8,12 +8,10 @@ function obtenerIdUsuarioDesdeToken(token) {
     try {
         const decoded = JSON.parse(atob(payload));
         return decoded.id_usuario || decoded.Id || decoded.id;
-    } catch (e) {
-        console.error("Error al decodificar el token:", e);
+    } catch {
         return null;
     }
 }
-
 const idUsuario = obtenerIdUsuarioDesdeToken(token);
 let zonaElectSeleccionado = null;
 
@@ -22,19 +20,40 @@ async function obtenerZonasElectrodomesticos() {
     contenedor.innerHTML = "";
 
     try {
-        const response = await fetch(`${API_BASE_URL}/api/DuenioCasa/zona-electro/hogar/${idHogar}`, {
-            headers: { "Authorization": `Bearer ${token}` }
-        });
+        // 1) traemos la lista de zonas (sin estado)
+        const resp = await fetch(
+            `${API_BASE_URL}/api/DuenioCasa/zona-electro/hogar/${idHogar}`,
+            { headers: { "Authorization": `Bearer ${token}` } }
+        );
+        if (!resp.ok) throw new Error("Error al obtener zonas");
+        const datos = await resp.json();
 
-        if (!response.ok) throw new Error("Error al obtener zonas");
+        // 2) para cada elemento pedimos su estado actual
+        const datosConEstado = await Promise.all(
+            datos.map(async item => {
+                try {
+                    const r2 = await fetch(
+                        `${API_BASE_URL}/api/DuenioCasa/estado-actual/${item.idZonaElect}`,
+                        { headers: { "Authorization": `Bearer ${token}` } }
+                    );
+                    if (r2.ok) {
+                        const js = await r2.json();
+                        item.estado = js.estado;
+                    } else {
+                        item.estado = false;
+                    }
+                } catch {
+                    item.estado = false;
+                }
+                return item;
+            })
+        );
 
-        const datos = await response.json();
-
+        // 3) agrupamos por zona y pintamos con el estado real
         const zonasAgrupadas = {};
-        datos.forEach(item => {
+        datosConEstado.forEach(item => {
             const zona = item.nombreZona;
-            if (!zonasAgrupadas[zona]) zonasAgrupadas[zona] = [];
-            zonasAgrupadas[zona].push(item);
+            (zonasAgrupadas[zona] ||= []).push(item);
         });
 
         for (const zona in zonasAgrupadas) {
@@ -43,101 +62,101 @@ async function obtenerZonasElectrodomesticos() {
             zonaBox.innerHTML = `<h3>${zona}</h3>`;
 
             zonasAgrupadas[zona].forEach(electro => {
-                const electroBox = document.createElement("div");
-                electroBox.className = "electro-box";
-                electroBox.setAttribute("data-id", electro.idZonaElect);
+                const box = document.createElement("div");
+                box.className = "electro-box";
+                box.dataset.id = electro.idZonaElect;
 
-                const estaEncendido = electro.estado === true || electro.estado === "true" || electro.estado === 1;
-                electroBox.classList.add(estaEncendido ? "encendido" : "apagado");
+                const on = electro.estado === true || electro.estado === "true" || electro.estado === 1;
+                box.classList.add(on ? "encendido" : "apagado");
+                box.innerText = electro.nombreElectrodomestico;
+                box.onclick = () => mostrarModalConfirmacion(electro);
 
-                electroBox.innerText = electro.nombreElectrodomestico;
-                electroBox.onclick = () => mostrarModalConfirmacion(electro);
-
-                zonaBox.appendChild(electroBox);
+                zonaBox.appendChild(box);
             });
 
             contenedor.appendChild(zonaBox);
         }
-
     } catch (error) {
         console.error("Error al cargar zonas:", error);
+        mostrarPopup("❌ Error", "No se pudieron cargar las zonas y electrodomésticos.");
     }
 }
 
 async function mostrarModalConfirmacion(electro) {
     const modal = document.getElementById("confirmacionModal");
-    const mensaje = document.getElementById("modalMensaje");
-    const btnConfirmar = document.getElementById("btnConfirmar");
-    const btnCancelar = document.getElementById("btnCancelar");
+    const mensajeEl = document.getElementById("modalMensaje");
+    const btnOk = document.getElementById("btnConfirmar");
+    const btnNo = document.getElementById("btnCancelar");
 
     try {
-        const estadoResponse = await fetch(`${API_BASE_URL}/api/DuenioCasa/estado-actual/${electro.idZonaElect}`, {
-            headers: { "Authorization": `Bearer ${token}` }
-        });
-
-        if (!estadoResponse.ok) throw new Error("No se pudo obtener el estado actual.");
-
-        const estadoData = await estadoResponse.json();
-        const estadoActual = estadoData.estado === true || estadoData.estado === "true" || estadoData.estado === 1;
-        const nuevoEstado = !estadoActual;
+        // volvemos a verificar el estado actual
+        const r = await fetch(
+            `${API_BASE_URL}/api/DuenioCasa/estado-actual/${electro.idZonaElect}`,
+            { headers: { "Authorization": `Bearer ${token}` } }
+        );
+        if (!r.ok) throw new Error();
+        const js = await r.json();
+        const estadoAct = js.estado === true || js.estado === "true" || js.estado === 1;
+        const nuevoEst = !estadoAct;
 
         zonaElectSeleccionado = {
             idZonaElect: electro.idZonaElect,
-            estadoNuevo: nuevoEstado,
+            estadoNuevo: nuevoEst,
             nombre: electro.nombreElectrodomestico
         };
 
-        mensaje.innerText = `¿Deseas ${nuevoEstado ? "ENCENDER" : "APAGAR"} el electrodoméstico "${zonaElectSeleccionado.nombre}"?`;
+        mensajeEl.innerText = `¿Deseas ${nuevoEst ? "ENCENDER" : "APAGAR"} "${zonaElectSeleccionado.nombre}"?`;
         modal.style.display = "flex";
 
-        btnConfirmar.onclick = async () => {
+        btnOk.onclick = async () => {
             try {
-                const response = await fetch(`${API_BASE_URL}/api/DuenioCasa/cambiar-estado`, {
-                    method: "POST",
-                    headers: {
-                        "Authorization": `Bearer ${token}`,
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        idZonaElect: zonaElectSeleccionado.idZonaElect,
-                        nuevoEstado: zonaElectSeleccionado.estadoNuevo,
-                        idUsuario: idUsuario
-                    })
-                });
-
-                const result = await response.json();
-
-                if (!response.ok) {
-                    alert("Error al cambiar el estado: " + (result.mensaje || "Error desconocido"));
+                const resp = await fetch(
+                    `${API_BASE_URL}/api/DuenioCasa/cambiar-estado`,
+                    {
+                        method: "POST",
+                        headers: {
+                            "Authorization": `Bearer ${token}`,
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            idZonaElect: zonaElectSeleccionado.idZonaElect,
+                            nuevoEstado: zonaElectSeleccionado.estadoNuevo,
+                            idUsuario
+                        })
+                    }
+                );
+                const resJson = await resp.json();
+                if (!resp.ok) {
+                    mostrarPopup("❌ Error", resJson.mensaje || "No se pudo cambiar el estado.");
                     return;
                 }
-
-                alert(result.mensaje || "Estado actualizado correctamente");
+                mostrarPopup("✅ Éxito", resJson.mensaje || "Estado actualizado.");
                 modal.style.display = "none";
 
-                // Actualizar el color del electrodoméstico en la vista
-                const electroBox = document.querySelector(`.electro-box[data-id="${zonaElectSeleccionado.idZonaElect}"]`);
-                if (electroBox) {
-                    electroBox.classList.remove("encendido", "apagado");
-                    electroBox.classList.add(zonaElectSeleccionado.estadoNuevo ? "encendido" : "apagado");
+                // actualizamos la clase de la caja
+                const box = document.querySelector(
+                    `.electro-box[data-id="${zonaElectSeleccionado.idZonaElect}"]`
+                );
+                if (box) {
+                    box.classList.toggle("encendido", zonaElectSeleccionado.estadoNuevo);
+                    box.classList.toggle("apagado", !zonaElectSeleccionado.estadoNuevo);
                 }
-
-            } catch (error) {
-                console.error("Error en confirmación:", error);
-                alert("Ocurrió un error al cambiar el estado.");
+            } catch (e) {
+                console.error("Error en confirmación:", e);
+                mostrarPopup("❌ Error", "Ocurrió un error al cambiar el estado.");
             }
         };
 
-        btnCancelar.onclick = () => {
-            modal.style.display = "none";
-        };
-
-    } catch (error) {
-        console.error("Error al obtener estado actual:", error);
-        alert("No se pudo obtener el estado actual del electrodoméstico.");
+        btnNo.onclick = () => (modal.style.display = "none");
+    } catch {
+        mostrarPopup("❌ Error", "No se pudo obtener el estado actual.");
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    obtenerZonasElectrodomesticos();
-});
+function mostrarPopup(titulo, mensaje) {
+    document.getElementById("popupModalLabel").innerText = titulo;
+    document.getElementById("popupModalMensaje").innerText = mensaje;
+    new bootstrap.Modal(document.getElementById("popupModal")).show();
+}
+
+document.addEventListener("DOMContentLoaded", obtenerZonasElectrodomesticos);

@@ -43,6 +43,7 @@ async function listarZonaElectPorHogar() {
         });
 
     } catch (error) {
+        mostrarPopup("❌ Error al obtener datos.");
         console.error("Error:", error);
     }
 }
@@ -56,26 +57,26 @@ function redirigirActualizar(idZonaElect, nombreZona, nombreElectrodomestico, co
 }
 
 async function confirmarEliminacion(idZonaElect, nombreZona, nombreElectro) {
-    const mensaje = `¿Deseas eliminar "${nombreElectro}" de la zona "${nombreZona}"?`;
-    const confirmar = confirm(mensaje);
+    mostrarPopup(`
+        ¿Deseas eliminar <strong>${nombreElectro}</strong> de la zona <strong>${nombreZona}</strong>?
+        <br><br>
+        <button id="confirmarBtn">Sí, eliminar</button>
+    `);
 
-    if (confirmar) {
+    document.getElementById("confirmarBtn").addEventListener("click", async () => {
         try {
             const response = await fetch(`https://localhost:7245/api/DuenioCasa/zona-electro/${idZonaElect}`, {
                 method: "DELETE",
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
+                headers: { "Authorization": `Bearer ${token}` }
             });
 
             if (!response.ok) throw new Error("No se pudo eliminar.");
 
-            // Recargar la lista
+            mostrarPopup("✅ Eliminación exitosa.");
             listarZonaElectPorHogar();
-
         } catch (error) {
-            alert("Error al eliminar.");
+            mostrarPopup("❌ Error al eliminar.");
             console.error(error);
         }
-    }
+    });
 }

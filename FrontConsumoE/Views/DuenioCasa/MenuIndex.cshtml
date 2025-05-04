@@ -2,13 +2,17 @@
     ViewData["Title"] = "MenuIndex";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
+<p class="p3">
+    Registra tu Hogar aqui
+    <button class="b0" onclick="window.location.href='/Dueniocasa/RegistrarHogar';">Ir</button>
+</p>
 
 <p class="p0">
-    <button class="b0">Botón 0</button>
-    Bienvenido a la página de gestión de casas
+    <button class="b0" onclick="window.location.href='/Dueniocasa/GestionHogares';">Ir</button>
+    Gestióna el consumo de tus hogares
 </p>
 <p class="p1">
-    Bienvenido a la página de gestión
+    Aqui encontraras nuestras recomendaciones
     <button class="b1">Botón 1</button>
 </p>
 <style>
@@ -18,32 +22,45 @@
         background-repeat: no-repeat;
     }
 
+    .p3 {
+        margin-top:25px;
+        background-color: #bdebc3;
+        width: 45vw;
+        height: 120px;
+        position: absolute;
+        left: 0;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        padding: 30px;
+        text-align: right;
+        margin-bottom: 40px; /* Más espacio entre elementos */
+    }
+
     .p0 {
-        margin-top: 110px;
-        background-color: #8dc63f; /* Color de fondo específico */
-        width: 60vw; /* Ocupa la mitad de la pantalla */
-        height: 120px; /* Ajusta la altura según necesites */
+        margin-top:200px;
+        background-color: #8dc63f;
+        width: 60vw;
+        height: 120px;
         position: absolute;
         right: 0;
-        top: 100px;
-        border-top-left-radius: 20px; /* Redondear la esquina izquierda superior */
-        border-bottom-left-radius: 20px; /* Redondear la esquina izquierda inferior */
-        padding: 30px; /* Espacio interno */
-        text-align: left; /* Alinear el contenido a la derecha */
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        padding: 30px;
+        text-align: left;
+        margin-bottom: 40px; /* Más espacio entre elementos */
     }
 
     .p1 {
-        margin-top: 150px;
-        background-color: #bdebc3; /* Color de fondo específico */
-        width: 50vw; /* Ocupa la mitad de la pantalla */
-        height: 120px; /* Ajusta la altura según necesites */
+        margin-top:380px;
+        background-color: #bdebc3;
+        width: 66vw;
+        height: 120px;
         position: absolute;
         left: 0;
-        top: 300px;
-        border-top-right-radius: 20px; /* Redondear la esquina derecha superior */
-        border-bottom-right-radius: 20px; /* Redondear la esquina derecha inferior */
-        padding: 30px; /* Espacio interno */
-        text-align: right; /* Alinear el contenido a la izquierda */
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        padding: 30px;
+        text-align: right;
     }
 
     .b0, .b1 {

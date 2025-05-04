@@ -65,14 +65,21 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ligera */
             width: 250px; /* Tamaño constante */
             text-align: center;
-            transition: transform 0.3s ease; /* Efecto suave */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación suave */
         }
+
+            /* Efecto hover para tarjetas */
+            .card:hover {
+                transform: scale(1.09); /* Agranda un poco al hacer hover */
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.55); /* Sombra más pronunciada */
+            }
 
             .card img {
                 width: 150px;
                 height: 150px;
                 margin: auto;
             }
+
 
         /* Botón de título */
         .card-title {

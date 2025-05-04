@@ -41,59 +41,50 @@
         </div>
     </footer>
 
+    <!-- Popup informativo -->
+    <div id="popup" class="popup-hidden">
+        <div class="popup-content">
+            <span id="popup-mensaje"></span>
+            <div class="popup-boton">
+                <button onclick="cerrarPopup()">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación -->
+    <div id="modalConfirmacion" class="popup-hidden">
+        <div class="popup-content">
+            <p id="modalTexto"></p>
+            <div class="popup-boton">
+                <button id="btnConfirmarSi">Sí</button>
+                <button id="btnConfirmarNo">No</button>
+            </div>
+        </div>
+    </div>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script>
+        // logout
         document.getElementById("logout-link").addEventListener("click", function (e) {
             e.preventDefault();
             localStorage.removeItem("token");
             window.location.href = "/User/Login";
         });
+
+        // popup functions expuestas al scope global
+        window.mostrarPopup = function (mensaje) {
+            const popup = document.getElementById("popup");
+            document.getElementById("popup-mensaje").textContent = mensaje || "¡Mensaje no especificado!";
+            popup.classList.remove("popup-hidden");
+        };
+
+        window.cerrarPopup = function () {
+            document.getElementById("popup").classList.add("popup-hidden");
+        };
     </script>
 
     @await RenderSectionAsync("Scripts", required: false)
-
-    <style>
-        body {
-            font-family: "M PLUS Rounded 1c", sans-serif;
-            font-size: 1.8em;
-        }
-
-        .navbar-custom {
-            background-color: #b2bdb8;
-            padding: 10px 30px;
-        }
-
-        .navbar-brand {
-            font-size: 53px;
-            font-weight: bold;
-            color: #00bf63 !important;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo-img {
-            width: 100px;
-            height: 100px;
-        }
-
-        .nav-link-custom {
-            font-size: 30px;
-            color: #005b0c !important;
-            font-weight: bold;
-            margin-left: 25px;
-        }
-
-        .material-symbols-outlined {
-            vertical-align: middle;
-            font-size: 40px;
-        }
-
-        .border-top .container {
-            font-size: 0.8em;
-        }
-    </style>
 </body>
 </html>

@@ -14,9 +14,11 @@
     </div>
 </div>
 <div id="casas-lista" class="casas-container"></div>
+<button class="btn-volver" onclick="window.history.back()">⮐</button>
+
 @section Scripts {
     <script src="~/js/validadorSesion.js"></script>
-    <script src="~/js/Dc/listarCasas.js"></script>
+    <script src="~/js/Dc/listarCasas.js?v=1.0.7"></script>
 }
 
 <style>
@@ -113,7 +115,7 @@
         display: block; /* Cambia a bloque para centrar con margin */
         transition: all 0.3s ease;
         margin: 15px auto; /* Centrado horizontal y espaciado superior */
-        width: 135px; /* Ancho del botón */
+        width: 160px; /* Ancho del botón */
     }
 
         .btn-detalles:hover {

@@ -21,9 +21,7 @@ async function cargarElectrodomesticos() {
     try {
         const response = await fetch("https://localhost:7245/api/DuenioCasa/electrodomesticos", {
             method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
+            headers: { "Authorization": `Bearer ${token}` }
         });
 
         if (!response.ok) throw new Error("Error al obtener los electrodomésticos.");
@@ -41,6 +39,7 @@ async function cargarElectrodomesticos() {
         electroSelect.innerHTML = opciones.join("");
     } catch (error) {
         console.error("Error al cargar electrodomésticos:", error);
+        mostrarPopup("❌ Error al cargar electrodomésticos.");
     }
 }
 
@@ -51,9 +50,7 @@ async function cargarZonas() {
     try {
         const response = await fetch("https://localhost:7245/api/DuenioCasa/zonas", {
             method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
+            headers: { "Authorization": `Bearer ${token}` }
         });
 
         if (!response.ok) throw new Error("Error al obtener las zonas.");
@@ -71,6 +68,7 @@ async function cargarZonas() {
         zonaSelect.innerHTML = opciones.join("");
     } catch (error) {
         console.error("Error al cargar zonas:", error);
+        mostrarPopup("❌ Error al cargar zonas.");
     }
 }
 
@@ -80,7 +78,7 @@ async function actualizarZonaElectro() {
     const consumo = parseFloat(document.getElementById("consumo").value);
 
     if (!zona || !electro || isNaN(consumo) || consumo <= 0) {
-        alert("Completa todos los campos correctamente.");
+        mostrarPopup("⚠️ Completa todos los campos correctamente.");
         return;
     }
 
@@ -106,7 +104,7 @@ async function actualizarZonaElectro() {
             throw new Error("Error al actualizar");
         }
 
-        alert("Zona - Electrodoméstico actualizado correctamente.");
+        mostrarPopup("✅ Zona - Electrodoméstico actualizado correctamente.");
         localStorage.removeItem("id_zona_elect");
         localStorage.removeItem("nombre_zona");
         localStorage.removeItem("nombre_electro");
@@ -115,6 +113,6 @@ async function actualizarZonaElectro() {
 
     } catch (error) {
         console.error("Error al actualizar:", error);
-        alert("Error al actualizar. Revisa la consola.");
+        mostrarPopup("❌ Error al actualizar. Revisa la consola.");
     }
 }

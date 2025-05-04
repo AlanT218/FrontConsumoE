@@ -20,7 +20,6 @@
         <div class="login-section">
             <h2 class="form-title">Iniciar sesión</h2>
             <form id="loginForm">
-                <!-- 👈 Agregado id aquí -->
                 <div class="form-group">
                     <label for="username">Usuario</label>
                     <div class="input-group">
@@ -44,7 +43,9 @@
             </form>
         </div>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/popup.js"></script>
+    <script src="~/js/inicios.js?v=1.0.1"></script>
     <style>
         body {
             font-family: "M PLUS Rounded 1c", sans-serif;
@@ -124,11 +125,10 @@
             border: none;
             outline: none;
             flex: 1;
-            padding: 8px;
+            padding: 6px;
             font-size: 14px;
-            text-align: center;
+            text-align: left;
         }
-
         .button-container {
             display: flex;
             flex-direction: column;
@@ -163,8 +163,7 @@
             }
     </style>
 
-    <!--  JavaScript del login -->
-    <script src="/js/login.js"></script>
-
+    
 </body>
 </html>
+
