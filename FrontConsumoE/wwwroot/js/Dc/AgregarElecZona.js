@@ -13,9 +13,7 @@ async function cargarElectrodomesticos() {
     try {
         const response = await fetch("https://localhost:7245/api/DuenioCasa/electrodomesticos", {
             method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
+            headers: { "Authorization": `Bearer ${token}` }
         });
 
         if (!response.ok) throw new Error("Error al obtener los electrodomésticos.");
@@ -29,6 +27,7 @@ async function cargarElectrodomesticos() {
         electroSelect.innerHTML = html;
     } catch (error) {
         console.error("Error al cargar electrodomésticos:", error);
+        mostrarPopup("❌ Error al cargar electrodomésticos.");
     }
 }
 
@@ -39,9 +38,7 @@ async function cargarZonas() {
     try {
         const response = await fetch("https://localhost:7245/api/DuenioCasa/zonas", {
             method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
+            headers: { "Authorization": `Bearer ${token}` }
         });
 
         if (!response.ok) throw new Error("Error al obtener las zonas.");
@@ -55,6 +52,7 @@ async function cargarZonas() {
         zonaSelect.innerHTML = html;
     } catch (error) {
         console.error("Error al cargar zonas:", error);
+        mostrarPopup("❌ Error al cargar zonas.");
     }
 }
 
@@ -68,12 +66,12 @@ async function agregarZonaElectrodomestico() {
     const idHogar = localStorage.getItem("id_hogar");
 
     if (!idHogar) {
-        alert("Por favor selecciona un hogar antes de agregar un electrodoméstico.");
+        mostrarPopup("⚠️ Por favor selecciona un hogar antes de agregar un electrodoméstico.");
         return;
     }
 
     if (!electro || !zona || isNaN(consumo) || consumo <= 0) {
-        alert("Por favor completa todos los campos correctamente.");
+        mostrarPopup("⚠️ Por favor completa todos los campos correctamente.");
         return;
     }
 
@@ -96,15 +94,15 @@ async function agregarZonaElectrodomestico() {
         });
 
         if (response.ok) {
-            alert("Electrodoméstico agregado correctamente.");
+            mostrarPopup("✅ Electrodoméstico agregado correctamente.");
             // Opción: limpiar formulario después de agregar
             document.getElementById("gestion-form").reset();
         } else {
-            alert("Error al agregar el electrodoméstico.");
+            mostrarPopup("❌ Error al agregar el electrodoméstico.");
         }
     } catch (error) {
         console.error("Error al agregar el electrodoméstico:", error);
-        alert("Error al agregar el electrodoméstico. Revisa la consola.");
+        mostrarPopup("❌ Error al agregar el electrodoméstico. Revisa la consola.");
     }
 }
 

@@ -8,6 +8,11 @@ namespace FrontConsumoE.Controllers
         {
             return View();
         }
+        
+        public IActionResult RegistrarHogar()
+        {
+            return View();
+        }
         public IActionResult MenuIndex()
         {
             return View();

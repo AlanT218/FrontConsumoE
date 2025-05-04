@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
 async function listarZonaElectPorHogar() {
     const tabla = document.getElementById("tabla-zonas-electro").querySelector("tbody");
     tabla.innerHTML = "";
-
     try {
         const response = await fetch(`https://localhost:7245/api/DuenioCasa/zona-electro/hogar/${idHogar}`, {
             headers: { "Authorization": `Bearer ${token}` }
@@ -41,9 +40,9 @@ async function listarZonaElectPorHogar() {
             `;
             tabla.appendChild(fila);
         });
-
     } catch (error) {
         console.error("Error:", error);
+        mostrarPopup("❌ Error al obtener las zonas y electrodomésticos.");
     }
 }
 
@@ -57,25 +56,36 @@ function redirigirActualizar(idZonaElect, nombreZona, nombreElectrodomestico, co
 
 async function confirmarEliminacion(idZonaElect, nombreZona, nombreElectro) {
     const mensaje = `¿Deseas eliminar "${nombreElectro}" de la zona "${nombreZona}"?`;
-    const confirmar = confirm(mensaje);
 
-    if (confirmar) {
+    mostrarConfirmacion(mensaje, async () => {
         try {
             const response = await fetch(`https://localhost:7245/api/DuenioCasa/zona-electro/${idZonaElect}`, {
                 method: "DELETE",
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
+                headers: { "Authorization": `Bearer ${token}` }
             });
 
             if (!response.ok) throw new Error("No se pudo eliminar.");
 
-            // Recargar la lista
+            mostrarPopup("✅ Eliminado correctamente.");
             listarZonaElectPorHogar();
-
         } catch (error) {
-            alert("Error al eliminar.");
             console.error(error);
+            mostrarPopup("❌ Error al eliminar el registro.");
         }
-    }
+    });
 }
+
+// Popup informativo
+function mostrarPopup(mensaje) {
+    const popup = document.getElementById("popup");
+    const mensajeElem = document.getElementById("popup-mensaje");
+
+    mensajeElem.textContent = mensaje;
+    popup.classList.remove("popup-hidden");
+}
+
+function cerrarPopup() {
+    const popup = document.getElementById("popup");
+    popup.classList.add("popup-hidden");
+}
+

@@ -16,9 +16,7 @@ async function listarCasas() {
 
         const response = await fetch(API_URL, {
             method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`,
-            },
+            headers: { "Authorization": `Bearer ${token}` }
         });
 
         if (response.ok) {
@@ -26,7 +24,7 @@ async function listarCasas() {
             mostrarCasas(casas);
         } else {
             console.error("Error al obtener las casas:", response.statusText);
-            document.getElementById("casas-lista").innerHTML = "<p>Error al cargar las casas.</p>";
+            mostrarPopup("❌ Error al cargar las casas.");
         }
     } catch (error) {
         const mensaje = encodeURIComponent(error.message);
@@ -49,16 +47,23 @@ function mostrarCasas(casas) {
     }
 
     const casasHtml = casas.map(casa => {
-        const imagen = casa.categoria === "Casa" ? "casa.jpg" :
-            casa.categoria === "Apartamento" ? "apartamento.jpg" :
-                "default.jpg"; // Imagen por defecto
+        const imagen = casa.nombreTipo === "Casa" ? "casa.jpg" :
+            casa.nombreTipo === "Apartamento" ? "apartamento.jpg" :
+                casa.nombreTipo === "Finca" ? "finca.jpg" :
+                    "default.jpg"; // Imagen por defecto
+
+        const tipoFriendly = {
+            "Casa": "🏠 Casa",
+            "Apartamento": "🏢 Apartamento",
+            "Finca": "🌳 Finca"
+        };
 
         return `
             <div class="card mb-3 p-3">
-                <img src="/img/${imagen}" alt="${casa.categoria}">
+                <img src="/img/${imagen}" alt="${casa.nombreTipo}" style="max-width: 100%; height: auto;">
                 <p><strong>Nombre de la Casa:</strong> ${casa.nombre}</p>
-                <p><strong>Categoría:</strong> ${casa.categoria}</p>
-                <button class="btn-detalles" onclick="seleccionarCasa(${casa.id})">Detalles</button>
+                <p><strong>Categoría:</strong> ${tipoFriendly[casa.nombreTipo] || casa.nombreTipo}</p>
+                <button class="btn-detalles" onclick="seleccionarCasa(${casa.id})">Seleccionar</button>
             </div>
         `;
     }).join("");
@@ -69,8 +74,7 @@ function mostrarCasas(casas) {
 // Función para guardar el ID del hogar seleccionado
 function seleccionarCasa(idHogar) {
     localStorage.setItem("id_hogar", idHogar);
-    // Puedes quitar el alert si quieres que se vea más fluido
-    // alert(`Hogar seleccionado con ID: ${idHogar}`);
+
     window.location.href = "/DuenioCasa/Menu";
 }
 

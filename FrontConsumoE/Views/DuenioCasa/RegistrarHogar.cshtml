@@ -1,0 +1,108 @@
+﻿@{
+    ViewData["Title"] = "HomeUser";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<link rel="stylesheet" href="/css/site.css">
+
+
+<div class="contenedor">
+    <div class="formulario">
+        <h1 class="titulo">Registrar Nuevo Hogar</h1>
+
+        <form id="formAgregarHogar">
+            <label for="nombre">Nombre del hogar:</label>
+            <input type="text" id="nombre" name="nombre" maxlength="20" required />
+            <label for="tipo">Tipo de hogar:</label>
+            <select id="tipo" name="tipo" required>
+                <option value="">Seleccione un tipo</option>
+            </select>
+            
+            <div class="contenedor-boton">
+                <button type="submit">Registrar</button>
+            </div>
+        </form>
+        <div id="mensaje" style="text-align:center; font-weight:bold; margin-top:10px; color: red;"></div>
+
+    </div>
+    <div class="imagen">
+        <img src="/Img/FondoAg.jpg" alt="Imagen de fondo">
+    </div>
+</div>
+
+<button class="btn-volver" onclick="window.history.back()">⮐</button>
+
+<style>
+    body {
+        background-image: url('/Img/fondo.jpeg');
+        background-size: cover; /* para cubrir toda la pantalla */
+        background-repeat: no-repeat;
+    }
+    .contenedor {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+        max-width: 900px;
+        margin: 20px auto;
+        background: #d9d9d9;
+        padding: 10px;
+        border-radius: 15px;
+    }
+
+    .formulario {
+        flex: 1;
+        padding: 10px;
+        gap: 40px; /* Espaciado más ajustado */
+    }
+
+    button, input, optgroup, select, textarea {
+        margin: 10px;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+    }
+    .imagen {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .imagen img {
+            max-width: 100%;
+            border-radius: 15px;
+        }
+
+    .titulo {
+        text-align: center;
+        margin-top: -10px;   
+        font-size: 1.8em;
+        text-shadow: 1px 1px 3px gray;
+    }
+
+    .contenedor-boton {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    button {
+        margin-top: 10px;
+        background-color: #00bf63; /* Color del botón */
+        border-radius: 10px; /* Bordes redondeados */
+        border: 4px solid white; /* Borde grueso blanco */
+        padding: 10px 20px; /* Ajustar tamaño del botón */
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        align-items: center;
+    }
+
+        button:hover {
+            background-color: white; /* Color del botón al pasar el mouse */
+            border: 4px solid #00bf63; /* Borde del botón al pasar el mouse */
+        }
+</style>
+
+@section Scripts {
+    <script src="~/js/Dc/registrarHogar.js?v=1.0.4"></script>
+}
