@@ -41,6 +41,10 @@ namespace FrontConsumoE.Controllers
         {
             return View();
         }
-
+        public IActionResult Recomendaciones()
+        {
+            return View();
+        }
+        
     }
 }

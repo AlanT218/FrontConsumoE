@@ -16,9 +16,7 @@
         try {
             const response = await fetch("https://localhost:7245/api/User/CrearUsuario", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)
             });
 
@@ -32,14 +30,16 @@
             }
 
             if (response.ok) {
-                alert(result.mensaje || "Usuario creado correctamente");
-                window.location.href = "/User/Login";
+                mostrarPopup(result.mensaje || "✅ Usuario creado correctamente.");
+                setTimeout(() => {
+                    window.location.href = "/User/Index";
+                }, 2000); // Pequeño retraso para que el usuario vea el mensaje
             } else {
-                throw new Error(result.message || "Error desconocido al crear usuario.");
+                throw new Error(result.message || "❌ Error desconocido al crear usuario.");
             }
         } catch (error) {
-            const mensaje = encodeURIComponent(error.message);
-            window.location.href = `/Home/Error?mensaje=${mensaje}`;
+            mostrarPopup(`❌ Error: ${error.message}`, 'error');
+
         }
     });
 });
