@@ -36,7 +36,7 @@
                 const result = await response.json();
                 if (!response.ok) throw new Error(result.mensaje || JSON.stringify(result));
 
-                mostrarPopup(`✅ ${result.mensaje} (ID: ${result.idHogar})`);
+                mostrarPopup(`✅ ${result.mensaje}`);
                 form.reset();
             } catch (err) {
                 console.error("Error al registrar hogar:", err);
