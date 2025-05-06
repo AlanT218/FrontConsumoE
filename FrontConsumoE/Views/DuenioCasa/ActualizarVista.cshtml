@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewData["Title"] = "ActualizarVista";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<link rel="stylesheet" href="/css/site.css">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Electrodoméstico</title>
+</head>
+<body>
+    <h1 class="titulo">Actualizar Electrodoméstico</h1>
+
+    <div class="contenedor">
+        <!-- Formulario de actualización -->
+        <form id="form-actualizar">
+            <div class="form-group">
+                <label for="electrodomestico">Electrodoméstico:</label>
+                <select id="electrodomestico" required>
+                    <option value="">Seleccione un electrodoméstico</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="zona">Zona:</label>
+                <select id="zona" required>
+                    <option value="">Seleccione una zona</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="consumo">Voltaje (W):</label>
+                <input type="number" id="consumo" min="1" required>
+            </div>
+
+            <button type="submit" class="btn-actualizar">Actualizar</button>
+        </form>
+
+    </div>
+    <button class="btn-volver" onclick="window.history.back()">⮐</button>
+
+    <script src="~/js/Dc/actualizarZonaElectro.js"></script>
+
+    <style>
+        body {
+            background-image: url('/Img/fondo.jpeg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        .titulo {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.7em;
+            text-shadow: 1px 1px 3px gray;
+        }
+
+        .contenedor {
+            font-size: 0.8em;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            background-color: #e8e8e8;
+            border: 3px solid #b2bdb8;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            width: 500px;
+            padding: 30px;
+            margin: auto
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .btn-actualizar {
+            background-color: #f9d423; /* Amarillo */
+            border: 2px solid #f9d423;
+            color: #000;
+            font-weight: bold;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: block;
+            margin: 15px auto;
+            width: 135px;
+            transition: all 0.3s ease;
+        }
+
+            .btn-actualizar:hover {
+                background-color: white;
+                border: 2px solid #f9d423;
+                color: #f9d423;
+            }
+    </style>
+</body>
+</html>

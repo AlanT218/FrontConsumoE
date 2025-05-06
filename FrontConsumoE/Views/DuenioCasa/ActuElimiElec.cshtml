@@ -1,0 +1,65 @@
+﻿@{
+  ViewData["Title"] = "Elimi";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<link rel="stylesheet" href="/css/site.css">
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Actualizar o Eliminar Electrodomésticos</title>
+   
+</head>
+<body>
+    <h1 class="titulo">Gestión de Electrodomésticos por Zona</h1>
+
+    <table id="tabla-zonas-electro">
+        <thead>
+            <tr>
+                <th>Zona</th>
+                <th>Electrodoméstico</th>
+                <th>Voltaje (W)</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <button class="btn-volver" onclick="window.history.back()">⮐</button>
+
+    <script src="/js/Dc/ListarElimiar.js?v=1.0.1"></script>
+
+    <style>
+        body {
+            background-image: url('/Img/fondoB.png');
+            background-size: cover; /* para cubrir toda la pantalla */
+            background-repeat: no-repeat;
+        }
+        .titulo {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.7em;
+            text-shadow: 1px 1px 3px gray;
+        }
+        button.actualizar {
+            background-color: #ffd700;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button.eliminar {
+            background-color: #e74c3c;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+        }
+    </style>
+</body>
+</html>

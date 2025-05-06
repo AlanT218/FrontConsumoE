@@ -8,25 +8,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
-
-    <!-- Fuente personalizada para el título -->
-    <link href="https://fonts.googleapis.com/css2?family=Chau+Philomene+One&display=swap" rel="stylesheet">
-    <!-- Íconos de Material Design -->
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-    <!-- Contenedor principal con diseño dividido -->
     <div class="container">
-        <!-- Sección izquierda: Logo -->
         <div class="logo-section">
             <img src="~/Img/LogoGestion.png" alt="Logo del Proyecto" class="logo">
         </div>
 
-        <!-- Sección derecha: Formulario de inicio de sesión -->
         <div class="login-section">
             <h2 class="form-title">Iniciar sesión</h2>
-            <form>
-                <!-- Campo de usuario -->
+            <form id="loginForm">
                 <div class="form-group">
                     <label for="username">Usuario</label>
                     <div class="input-group">
@@ -35,7 +28,6 @@
                     </div>
                 </div>
 
-                <!-- Campo de contraseña -->
                 <div class="form-group">
                     <label for="password">Contraseña</label>
                     <div class="input-group">
@@ -44,38 +36,36 @@
                     </div>
                 </div>
 
-                <!-- Botones de acción centrados -->
                 <div class="button-container">
-                    <a class="nav-link nav-link-custom" asp-area="" asp-controller="User" asp-action="CreateUser">
-                        Crear Usuario
-                    </a>
+                    <button type="submit" class="btn-submit">Ingresar</button>
+                    <a class="btn-register" asp-controller="User" asp-action="CreateUser">Registrarse</a>
                 </div>
-
             </form>
         </div>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/popup.js"></script>
+    <script src="~/js/inicios.js?v=1.0.1"></script>
     <style>
-        /* ======= Estilos Generales ======= */
         body {
+            font-family: "M PLUS Rounded 1c", sans-serif;
+            font-size: 1.8em;
             margin: 0;
             height: 100vh;
-            background-color: #bdebc3; /* Fondo verde claro */
+            background-color: #bdebc3;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* ======= Contenedor principal ======= */
         .container {
             display: flex;
             width: 650px;
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            overflow: hidden; /* Evita márgenes blancos */
+            overflow: hidden;
         }
 
-        /* ======= Sección del logo ======= */
         .logo-section {
             flex: 1;
             display: flex;
@@ -85,13 +75,11 @@
             padding: 20px;
         }
 
-        /* Logo  */
         .logo {
-            width: 250px; /* Aumentado el tamaño */
+            width: 250px;
             height: auto;
         }
 
-        /* Sección del formulario */
         .login-section {
             flex: 1;
             background-color: #d3d3d3;
@@ -99,27 +87,25 @@
             text-align: center;
         }
 
-        /* Titulo del formulario */
         .form-title {
             font-size: 35px;
             font-weight: bold;
             color: #008000;
             text-shadow: 2px 2px 2px #004d00;
-            font-family: "Chau Philomene One", sans-serif;
             margin-bottom: 20px;
         }
 
-        /* Campos de entrada */
         .form-group {
-            text-align: left;
             margin-bottom: 15px;
         }
 
-        label {
-            font-weight: bold;
-            font-size: 14px;
-            display: block;
-        }
+            .form-group label {
+                font-weight: bold;
+                font-size: 14px;
+                display: block;
+                text-align: center;
+                margin-bottom: 5px;
+            }
 
         .input-group {
             display: flex;
@@ -139,20 +125,17 @@
             border: none;
             outline: none;
             flex: 1;
-            padding: 8px;
+            padding: 6px;
             font-size: 14px;
-            text-align: center;
+            text-align: left;
         }
-
-        /* Contenedor para centrar los botones */
         .button-container {
             display: flex;
-            flex-direction: column; /* Acomoda los elementos en columna */
-            align-items: center; /* Centra los elementos horizontalmente */
+            flex-direction: column;
+            align-items: center;
             margin-top: 10px;
         }
 
-        /* Boton de ingresar */
         .btn-submit {
             width: 45%;
             padding: 8px;
@@ -163,16 +146,24 @@
             cursor: pointer;
             font-size: 18px;
             color: white;
-            font-family: "Chau Philomene One", sans-serif;
-            margin-bottom: 10px; /* Espacio entre el botón y el enlace */
+            font-family: "M PLUS Rounded 1c", sans-serif;
+            margin-bottom: 10px;
         }
 
-        /*  Enlace */
         .btn-register {
-            text-decoration: none;
+            text-decoration: underline;
             color: black;
             font-size: 14px;
+            text-align: center;
+            transition: color 0.3s ease;
         }
+
+            .btn-register:hover {
+                color: purple;
+            }
     </style>
+
+    
 </body>
 </html>
+

@@ -1,0 +1,218 @@
+﻿@{
+    ViewData["Title"] = "GestionConsumo";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<link rel="stylesheet" href="/css/site.css">
+
+<div class="gestion-container">
+    
+
+    <div class="left-panel">
+        <h1 class="titulo">Gestión de Consumo</h1>
+        <div id="contenedor-zonas" class="zonas-container">
+        </div>
+    </div>
+
+    <div class="right-panel">
+        <button id="btnGenerarPdf" class="btn btn-primary">Generar PDF</button>
+    </div>
+</div>
+
+<!-- Modal de Confirmación -->
+<div id="confirmacionModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <p id="modalMensaje"></p>
+        <div class="modal-buttons">
+            <button id="btnConfirmar">✔</button>
+            <button id="btnCancelar">✖</button>
+        </div>
+    </div>
+</div>
+<style>
+    html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+   .gestion-container {
+    display: flex;
+    height: calc(100vh - 100px);
+    width: 100%; 
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+    /* Panel izquierdo  */
+    .left-panel {
+    width: 80%;
+    margin-right: 100px;
+    overflow:auto;
+	padding-right: 50px;
+}
+
+    /* Panel derecho */
+    .right-panel {
+    width: 35%;
+    background-image: url(/Img/fondogest.png);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex
+;
+    justify-content: center;
+    align-items: flex-start;
+    margin-right: -137px;
+    margin-top: -20px;
+    }
+
+    .right-panel #btnGenerarPdf {
+        position: absolute;
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60%;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: #00bf63;
+        border-radius: 10px;
+        border: 4px solid #b2bdb8;
+        cursor: pointer;
+        align-items: center;
+    }
+
+    /* Hover: efecto al pasar el mouse */
+    .right-panel #btnGenerarPdf:hover {
+            background-color: white; 
+            border: 4px solid #00bf63; 
+            color:gray;
+        }
+
+    .titulo {
+        text-align: center;
+        margin-top: -10px;   
+        font-size: 1.8em;
+        text-shadow: 1px 1px 3px gray;
+    }
+
+    /* Grid auto‑ajustable de tarjetas de zona */
+    .zonas-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-auto-rows: auto;
+        gap: 20px;
+        padding: 20px 0;
+    }
+
+    /* Tarjeta de zona (card) */
+    .zona-box {
+        background-color: #e8e8e8;
+        border: 3px solid #b2bdb8;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        border-radius: 15px;
+        padding: 25px;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .zona-box h3 {
+        margin-bottom: 15px;
+        font-size: 1.25rem;
+    }
+
+    /* Electrodoméstico dentro de la zona */
+    .electro-box {
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 8px;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+        text-align: center;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        
+    }
+
+    .electro-box:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+    }
+
+    /* Estados */
+    .encendido {
+
+        background-color: green !important;
+        
+    }
+
+    .apagado {
+        background-color: red !important;
+        
+    }
+
+    /* Modal de confirmación */
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+        font-family: inherit;
+    }
+
+    .modal-content {
+        background-color: #d9d9d9;
+        padding: 25px;
+        border-radius: 10px;
+        width: 320px;
+        text-align: center;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+
+    .modal-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 15px;
+    }
+
+    .modal-buttons button {
+        padding: 11px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: none;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Botones del modal */
+    #btnConfirmar {
+        background-color: #00a651;
+        color: white;
+    }
+
+    #btnCancelar {
+        background-color: #6c757d;
+        color: white;
+    }
+
+    #btnConfirmar:hover,
+    #btnCancelar:hover {
+        opacity: 0.8;
+    }
+</style>
+
+<!-- JS -->
+<script src="~/js/Dc/gestionConsumo.js?v=1.0.4"></script>

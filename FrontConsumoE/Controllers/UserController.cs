@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FrontConsumoE.Controllers
@@ -17,6 +18,13 @@ namespace FrontConsumoE.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult HomeUser()
+        {
+            return View(); // La validación se hace en el JS (validadorSesion.js)
+        }
+
 
         [HttpGet]
         public IActionResult prueba()

@@ -1,11 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800;900&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Quicksand:wght@300..700&display=swap');
+
+body {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: 1.8em;
+}
+h1 {
+    font-size:3em;
+    text-shadow: 1px 1px 3px gray;
+}
 html {
   font-size: 14px;
 }
-
 @media (min-width: 768px) {
   html {
     font-size: 16px;
   }
+}
+table {
+    width: 105%;
+    margin: auto;
+    border-radius: 10px;
+    overflow: hidden;
+    border-collapse: separate;
+    border-spacing: 2px;
+}
+
+thead {
+    background-color: #78a890;
+    color: white;
+    text-shadow: -1.5px -1.5px 0 gray;
+    border-radius: 12px;
+}
+
+th {
+    border: 0.3px solid #545454;
+}
+
+td {
+    background-color: #9fb2a9;
+}
+
+th, td {
+    padding: 10px;
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
@@ -19,4 +55,115 @@ html {
 
 body {
   margin-bottom: 60px;
+}
+.btn-volver {
+    background-color: #005b0c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .btn-volver:hover {
+        background-color: white;
+        color: #005b0c;
+        border: 3px solid #005b0c;
+    }
+/* ————— POPUP ————— */
+/* Ocultar popups/modales por defecto */
+.popup-hidden {
+    display: none !important;
+}
+
+/* Fondo oscuro y centrado */
+#popup,
+#modalConfirmacion {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+/* Contenido del popup y modal */
+.popup-content {
+    background-color: #b2bdb8;
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 20px 30px;
+    width: 300px;
+    max-width: 90%;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    font-weight: bold;
+    font-size: 1em;
+}
+
+/* Botones */
+.popup-boton button {
+    margin-top: 15px;
+    padding: 8px 20px;
+    background-color: #ebd57e;
+    border: 2px solid black;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+    .popup-boton button:hover {
+        background-color: #e4c94d;
+    }
+/* ————— Restauración de tu estilo de layout ————— */
+body {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: 1.8em;
+}
+
+.navbar-custom {
+    background-color: #b2bdb8;
+    padding: 10px 30px;
+}
+
+.navbar-brand {
+    font-size: 53px;
+    font-weight: bold;
+    color: #00bf63 !important;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    width: 100px;
+    height: 100px;
+}
+
+.nav-link-custom {
+    font-size: 30px;
+    color: #005b0c !important;
+    font-weight: bold;
+    margin-left: 25px;
+}
+
+.material-symbols-outlined {
+    vertical-align: middle;
+    font-size: 40px;
+}
+
+.border-top .container {
+    font-size: 0.8em;
 }

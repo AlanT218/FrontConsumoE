@@ -1,0 +1,127 @@
+﻿@{
+    ViewData["Title"] = "HomeUser";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<div id="contene">
+    <div id="bombi">
+        <img src="~/Img/b1.png" alt="logo" id="bombillo" class="logo-img"/>
+
+    </div>
+    <div id="figura" class="container mt-4">
+        <h2>Bienvenido a la página de casas</h2>
+        <button id="btn-obtener-casas" class="btn btn-success mb-3">Obtener Casas</button>
+    </div>
+</div>
+<div id="casas-lista" class="casas-container"></div>
+<button class="btn-volver" onclick="window.history.back()">⮐</button>
+
+@section Scripts {
+    <script src="~/js/validadorSesion.js"></script>
+    <script src="~/js/Dc/listarCasas.js?v=1.0.7"></script>
+}
+
+<style>
+    #contene {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        padding: 20px;
+    }
+
+    #bombi {
+        flex-shrink: 0; /* No deforma el bombillo */
+    }
+
+    #bombillo {
+        width: 130px;
+        height: auto;
+    }
+
+    #figura {
+        display: flex;
+        align-items: center;
+        background-color: #d4f3d4;
+        padding: 20px 30px;
+        border-radius: 0 10px 10px 0;
+        position: relative;
+        min-height: 100px;
+    }
+
+        #figura::before {
+            content: "";
+            position: absolute;
+            left: -20px;
+            width: 0;
+            height: 0;
+            border-top: 30px solid transparent;
+            border-bottom: 30px solid transparent;
+            border-right: 20px solid #d4f3d4;
+        }
+
+        #figura h2 {
+            font-size: 1rem;
+            margin: 0;
+            margin-right: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+    .casas-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px; /* Espaciado entre las cajas */
+        justify-content: center; /* Centra las cajas en el contenedor */
+    }
+
+    .card {
+        background-color: #e8e8e8; /* Fondo solicitado */
+        border: 3px solid #b2bdb8; /* Borde similar al ejemplo */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más destacada */
+        border-radius: 15px; /* Bordes redondeados */
+        padding: 25px; /* Espaciado interno mayor */
+        width: 350px; /* Tamaño de la caja ajustado */
+        text-align: center;
+        overflow: hidden;
+    }
+
+        .card img {
+            width: 100px; /* Dimensiones pequeñas estilo logo */
+            height: 100px;
+            border-radius: 50%; /* Forma circular */
+            display: block; /* Para centrar */
+            margin: 0 auto 15px; /* Centrado con espacio abajo */
+        }
+
+        .card p {
+            color: #333; /* Texto gris oscuro */
+            font-size: 1rem; /* Tamaño de texto mayor */
+            margin: 10px 0;
+        }
+
+        .card strong {
+            color: #008000; /* Color destacado para títulos */
+        }
+
+    .btn-detalles {
+        background-color: #00bf63; /* Color del botón */
+        border: 2px solid #00bf63;
+        color: white;
+        font-weight: bold;
+        font-size: 1.2rem;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 10px; /* Bordes redondeados */
+        display: block; /* Cambia a bloque para centrar con margin */
+        transition: all 0.3s ease;
+        margin: 15px auto; /* Centrado horizontal y espaciado superior */
+        width: 160px; /* Ancho del botón */
+    }
+
+        .btn-detalles:hover {
+            background-color: white;
+            border: 2px solid #00bf63;
+            color: #00bf63;
+        }
+
+</style>

@@ -8,9 +8,6 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 
-    <!-- Fuente Tan Headline desde Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Tan+Headline&display=swap" rel="stylesheet" />
-
     <!-- Íconos Material Symbols (Google Fonts) -->
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -31,16 +28,16 @@
                     Opti Energy
                 </div>
 
-
                 <!-- Botones de navegación para login y creación de usuario -->
                 <div class="d-flex">
                     <a class="nav-link nav-link-custom" asp-area="" asp-controller="User" asp-action="Login">
-                        <span class="material-symbols-outlined">login</span> Iniciar sesión
+                        <span class="material-symbols-outlined">passkey</span> Iniciar sesión
                     </a>
                     <a class="nav-link nav-link-custom" asp-area="" asp-controller="User" asp-action="CreateUser">
                         <span class="material-symbols-outlined">person_raised_hand</span> Crear Usuario
                     </a>
                 </div>
+
             </div>
         </nav>
     </header>
@@ -59,26 +56,59 @@
         </div>
     </footer>
 
+    <!-- Popup informativo -->
+    <div id="popup" class="popup-hidden">
+        <div class="popup-content">
+            <span id="popup-mensaje"></span>
+            <div class="popup-boton">
+                <button onclick="cerrarPopup()">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación -->
+    <div id="modalConfirmacion" class="popup-hidden">
+        <div class="popup-content">
+            <p id="modalTexto"></p>
+            <div class="popup-boton">
+                <button id="btnConfirmarSi">Sí</button>
+                <button id="btnConfirmarNo">No</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts de soporte (jQuery, Bootstrap y personalizado) -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <!-- Funciones JS globales para popup -->
+    <script>
+        window.mostrarPopup = function (mensaje) {
+            const popup = document.getElementById("popup");
+            document.getElementById("popup-mensaje").textContent = mensaje || "¡Mensaje no especificado!";
+            popup.classList.remove("popup-hidden");
+        };
+
+        window.cerrarPopup = function () {
+            document.getElementById("popup").classList.add("popup-hidden");
+        };
+    </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 
     <!-- Estilos personalizados -->
     <style>
-        /* Fuente general para todo el sitio */
         body {
-            font-family: 'Tan Headline', sans-serif;
+            font-family: "M PLUS Rounded 1c", sans-serif;
+            font-size: 1.8em;
         }
 
-        /* Barra de navegación */
         .navbar-custom {
             background-color: #b2bdb8;
             padding: 10px 30px;
         }
 
-        /* Estilo del título/logo del sistema */
         .navbar-brand {
             font-size: 53px;
             font-weight: bold;
@@ -88,29 +118,70 @@
             gap: 10px;
         }
 
-        /* Imagen del logo ampliada */
         .logo-img {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
         }
 
-        /* Enlaces de navegación */
         .nav-link-custom {
-            font-size: 45px;
+            font-size: 30px;
             color: #005b0c !important;
             font-weight: bold;
             margin-left: 25px;
         }
 
-        /* Alineación vertical de íconos Material Symbols */
         .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
             vertical-align: middle;
+            font-size: 40px;
         }
 
         .navbar-nav {
             align-items: center;
         }
+
+        .border-top .container {
+            font-size: 0.8em;
+        }
+
+        /* Popup estilos */
+        .popup-hidden {
+            display: none;
+        }
+
+        .popup-content {
+            background: white;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            width: 400px;
+            max-width: 90%;
+            margin: 100px auto;
+            text-align: center;
+            z-index: 1050;
+            position: fixed;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -30%);
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+        }
+
+        .popup-boton {
+            margin-top: 20px;
+        }
+
+            .popup-boton button {
+                font-size: 1em;
+                padding: 5px 15px;
+                border: none;
+                background-color: #005b0c;
+                color: white;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                .popup-boton button:hover {
+                    background-color: #004a09;
+                }
     </style>
 </body>
 </html>
