@@ -3,14 +3,28 @@
     ViewData["Title"] = "Recomendaciones";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
-<link rel="stylesheet" href="/css/site.css">
-<div class="contenedor">
-    <h1 class="titulo">Todas las Recomendaciones</h1>
-    <table id="tblRecomendaciones">
-        <thead>
-            <tr><th>Electrodoméstico</th><th>Recomendación</th></tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-    <div id="mensaje" class="mensaje"></div>
-</div><script src="/js/Dc/recomendaciones.js"></script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/site.css" />
+    <title>Recomendaciones</title>
+</head>
+<body>
+    <div class="contenedor">
+        <h1 class="titulo">Todas las recomendaciones</h1>
+        <table id="tblRecomendaciones">
+            <thead>
+                <tr><th>Electrodoméstico</th><th>Recomendación</th></tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div id="mensaje" class="mensaje" style="color:red; margin-top:10px;"></div>
+    </div>
+    <button class="btn-volver" onclick="window.history.back()">⮐</button>
+
+    <!-- al final del body -->
+    <script src="/js/Dc/recomendaciones.js?v=1.0.1" type="text/javascript"></script>
+</body>
+</html>
