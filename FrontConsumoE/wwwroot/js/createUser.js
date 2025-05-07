@@ -32,7 +32,7 @@
             if (response.ok) {
                 mostrarPopup(result.mensaje || "✅ Usuario creado correctamente.");
                 setTimeout(() => {
-                    window.location.href = "/User/Index";
+                    window.location.href = "/Home/Index";
                 }, 2000); // Pequeño retraso para que el usuario vea el mensaje
             } else {
                 throw new Error(result.message || "❌ Error desconocido al crear usuario.");
