@@ -1,0 +1,89 @@
+﻿@{
+    ViewData["Title"] = "Invitado - Gestión Consumo";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Consumo</title>
+    <link rel="stylesheet" href="~/css/styles.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>S.I Electricidad - Invitado</h1>
+        <div class="card-container">
+            <div class="card">
+                <img src="~/Img/gestion.png" alt="Gestión Consumo">
+                <button class="card-title" onclick="window.location.href='/Dueniocasa/GestionConsumo';">Gestión Consumo de Energía</button>
+            </div>
+        </div>
+    </div>
+    <button class="btn-volver" onclick="window.history.back()">⮐</button>
+
+    <style>
+        body {
+            background-color: #bdebc3;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 45px;
+        }
+
+        .card {
+            background-color: #d9d9d9;
+            border: 10px solid white;
+            border-radius: 10px;
+            padding: 20px;
+            width: 250px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            .card:hover {
+                transform: scale(1.09);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.55);
+            }
+
+            .card img {
+                width: 150px;
+                height: 150px;
+            }
+
+        .card-title {
+            background-color: white;
+            border: none;
+            color: black;
+            font-weight: bold;
+            border-radius: 10px;
+            font-size: 18px;
+            padding: 10px 0.5px;
+            margin-top: 15px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+
+            .card-title:hover {
+                background-color: #bdebc3;
+                color: white;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            }
+    </style>
+</body>
+</html>
+
