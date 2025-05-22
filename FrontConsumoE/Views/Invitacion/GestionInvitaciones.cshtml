@@ -1,0 +1,88 @@
+﻿@{
+    ViewData["Title"] = "GestionInvitaciones";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<link rel="stylesheet" href="/css/site.css" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="container mt-4">
+    <h2>Invitaciones Pendientes</h2>
+    <div id="invitaciones-lista" class="casas-container">
+        <!-- Aquí se inyectan las tarjetas -->
+    </div>
+</div>
+
+<style>
+    body {
+        background-image: url('/Img/fondoB.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+    }
+    .casas-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 30px;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .card {
+        background-color: white;
+        border: 6px solid #f4df41;
+        border-radius: 20px;
+        padding: 15px;
+        width: 250px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        text-align: left;
+        transition: transform 0.2s ease;
+        margin: auto;
+    }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            margin: 6px 0;
+            color: #000;
+            font-weight: bold;
+        }
+
+    /* Este contenedor hace que los botones queden uno al lado del otro */
+    .btn-group {
+        display: flex;
+        gap: 8px;
+        margin-top: 12px;
+    }
+
+    .btn-accion {
+        padding: 6px 14px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        border-radius: 15px;
+        border: none;
+        cursor: pointer;
+        color: white;
+        width: 90px; /* ancho fijo */
+        white-space: nowrap;
+    }
+
+    .btn-aceptar {
+        background-color: #7ac943;
+    }
+
+    .btn-rechazar {
+        background-color: #f44336;
+    }
+
+    
+</style>
+<button class="btn-volver" onclick="window.history.back()">⮐</button>
+
+@section Scripts {
+    <script src="~/js/Invitar/gestionInvitaciones.js?v=1.0.3"></script>
+}

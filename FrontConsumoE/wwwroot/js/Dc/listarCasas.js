@@ -8,9 +8,9 @@ if (!token) {
 
 // Función para listar las casas desde la API
 async function listarCasas() {
+    const btn = document.getElementById("btn-obtener-casas");
     try {
         // Desactivar botón mientras carga
-        const btn = document.getElementById("btn-obtener-casas");
         btn.disabled = true;
         btn.innerText = "Cargando...";
 
@@ -19,19 +19,21 @@ async function listarCasas() {
             headers: { "Authorization": `Bearer ${token}` }
         });
 
-        if (response.ok) {
-            const casas = await response.json();
-            mostrarCasas(casas);
-        } else {
+        if (!response.ok) {
             console.error("Error al obtener las casas:", response.statusText);
-            mostrarPopup("❌ Error al cargar las casas.");
+            mostrarPopup("❌ Error al cargar las casas.", "error");
+            return;
         }
+
+        const casas = await response.json();
+        mostrarCasas(casas);
+
     } catch (error) {
+        console.error("Error en red al cargar casas:", error);
         const mensaje = encodeURIComponent(error.message);
         window.location.href = `/Home/Error?mensaje=${mensaje}`;
     } finally {
         // Reactivar el botón
-        const btn = document.getElementById("btn-obtener-casas");
         btn.disabled = false;
         btn.innerText = "Obtener Casas";
     }
@@ -40,17 +42,18 @@ async function listarCasas() {
 // Función para mostrar las casas en la vista
 function mostrarCasas(casas) {
     const listaCasasDiv = document.getElementById("casas-lista");
+    listaCasasDiv.innerHTML = ""; // limpiar
 
-    if (casas.length === 0) {
+    if (!Array.isArray(casas) || casas.length === 0) {
         listaCasasDiv.innerHTML = "<p>No hay casas registradas.</p>";
         return;
     }
 
-    const casasHtml = casas.map(casa => {
+    casas.forEach(casa => {
         const imagen = casa.nombreTipo === "Casa" ? "casa.jpg" :
             casa.nombreTipo === "Apartamento" ? "apartamento.jpg" :
-                casa.nombreTipo === "Finca" ? "finca.jpg" :
-                    "default.jpg"; // Imagen por defecto
+                casa.nombreTipo === "Finca" ? "Finca.png" :
+                    "default.jpg";
 
         const tipoFriendly = {
             "Casa": "🏠 Casa",
@@ -58,24 +61,36 @@ function mostrarCasas(casas) {
             "Finca": "🌳 Finca"
         };
 
-        return `
-            <div class="card mb-3 p-3">
-                <img src="/img/${imagen}" alt="${casa.nombreTipo}" style="max-width: 100%; height: auto;">
-                <p><strong>Nombre de la Casa:</strong> ${casa.nombre}</p>
-                <p><strong>Categoría:</strong> ${tipoFriendly[casa.nombreTipo] || casa.nombreTipo}</p>
-                <button class="btn-detalles" onclick="seleccionarCasa(${casa.id})">Seleccionar</button>
-            </div>
-        `;
-    }).join("");
+        const infoRol = (casa.idRol == 2 || casa.idRol == 3)
+            ? `<p><strong>Tu rol en esta casa:</strong> ${casa.nombreRol}</p>`
+            : "";
 
-    listaCasasDiv.innerHTML = casasHtml;
+        const card = document.createElement("div");
+        card.className = "card mb-3 p-3";
+        card.innerHTML = `
+            <img src="/img/${imagen}" alt="${casa.nombreTipo}" style="max-width:100%;height:auto;">
+            <p><strong>Nombre de la Casa:</strong> ${casa.nombre}</p>
+            <p><strong>Categoría:</strong> ${tipoFriendly[casa.nombreTipo] || casa.nombreTipo}</p>
+            ${infoRol}
+            <button class="btn-detalles seleccionar-btn">Seleccionar</button>
+        `;
+
+        const btn = card.querySelector(".seleccionar-btn");
+        btn.addEventListener("click", () => seleccionarCasa(casa.id, casa.idRol));
+
+        listaCasasDiv.appendChild(card);
+    });
 }
 
-// Función para guardar el ID del hogar seleccionado
-function seleccionarCasa(idHogar) {
+// Función para guardar el ID del hogar seleccionado y redirigir según rol
+function seleccionarCasa(idHogar, idRol) {
     localStorage.setItem("id_hogar", idHogar);
 
-    window.location.href = "/DuenioCasa/Menu";
+    if (idRol === 1) {
+        window.location.href = "/Dueniocasa/Menu";
+    } else {
+        window.location.href = "/Invitacion/Invitado";
+    }
 }
 
 // Agregar el evento de clic al botón
