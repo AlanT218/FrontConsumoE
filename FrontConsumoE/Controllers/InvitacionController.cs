@@ -20,6 +20,9 @@ namespace FrontConsumoE.Controllers
         {
             return View();
         }
-        
+        public IActionResult InvitadoGestionConsumo()
+        {
+            return View();
+        }
     }
 }

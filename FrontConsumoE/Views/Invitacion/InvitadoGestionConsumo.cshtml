@@ -1,0 +1,167 @@
+﻿
+@{
+    ViewData["Title"] = "InvitadoGestionConsumo";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<link rel="stylesheet" href="/css/site.css" />
+
+<div class="gestion-container">
+    <div class="left-panel">
+        <h1 class="titulo">Gestión de Consumo (Invitado)</h1>
+        <div id="contenedor-zonas" class="zonas-container"></div>
+    </div>
+</div>
+
+<!-- Modal de Confirmación -->
+<div id="confirmacionModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <p id="modalMensaje"></p>
+        <div class="modal-buttons">
+            <button id="btnConfirmar">✔</button>
+            <button id="btnCancelar">✖</button>
+        </div>
+    </div>
+</div>
+
+<button class="btn-volver" onclick="window.history.back()">⮐</button>
+
+<style>
+    /* igual al original, omitiendo right-panel y botón PDF */
+    html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .gestion-container {
+        display: flex;
+        height: calc(100vh - 100px);
+        width: 100%;
+        gap: 20px;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .left-panel {
+        width: 100%;
+        overflow: auto;
+        padding-right: 50px;
+    }
+
+    .titulo {
+        text-align: center;
+        margin-top: -10px;
+        font-size: 1.8em;
+        text-shadow: 1px 1px 3px gray;
+    }
+
+    .zonas-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-auto-rows: auto;
+        gap: 20px;
+        padding: 20px 0;
+    }
+
+    .zona-box {
+        background-color: #e8e8e8;
+        border: 3px solid #b2bdb8;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        border-radius: 15px;
+        padding: 25px;
+        text-align: center;
+        overflow: hidden;
+    }
+
+        .zona-box h3 {
+            margin-bottom: 15px;
+            font-size: 1.25rem;
+        }
+
+    .electro-box {
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 8px;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+        text-align: center;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .electro-box:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+    .encendido {
+        background-color: green !important;
+    }
+
+    .apagado {
+        background-color: red !important;
+    }
+
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+    }
+
+    .modal-content {
+        background-color: #d9d9d9;
+        padding: 25px;
+        border-radius: 10px;
+        width: 320px;
+        text-align: center;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+
+    .modal-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 15px;
+    }
+
+        .modal-buttons button {
+            padding: 11px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+    #btnConfirmar {
+        background-color: #00a651;
+        color: white;
+    }
+
+    #btnCancelar {
+        background-color: #6c757d;
+        color: white;
+    }
+
+        #btnConfirmar:hover, #btnCancelar:hover {
+            opacity: 0.8;
+        }
+</style>
+
+@section Scripts {
+    <script src="~/js/validadorSesion.js"></script>
+    <script src="~/js/Invitar/invitadoGestionConsumo.js?v=1.0.0"></script>
+}
+
