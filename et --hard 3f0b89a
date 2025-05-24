@@ -1,0 +1,28 @@
+* [33m3f0b89a[m[33m ([m[1;31morigin/Alan-Dev[m[33m, [m[1;32mAlan-Dev[m[33m)[m Acutalizacion de popap para la visat Create use  y consumo del servicio recomendaciones de la api con js funcional en el front
+* [33mcea8f1b[m Ajuste de diseño en vistas Agregar Hogar y Actualizar, ademas de integracion de modales para mensajes de sistemas, correcto uso de generar pdf en la vista Gestion Consumo
+*   [33m2e57a31[m[33m ([m[1;31morigin/QA[m[33m, [m[1;32mQA[m[33m)[m Merge pull request #4 from AlanT218/dev-Alan
+[32m|[m[33m\[m  
+[32m|[m * [33m92315aa[m[33m ([m[1;31morigin/dev-Alan[m[33m, [m[1;32mdev-Alan[m[33m)[m Se ajustaron las vistas para capturar mensajes en un popap o modal, consumo de agregar hogar con js funcional
+[32m|[m[32m/[m  
+*   [33maa1d4bf[m Merge pull request #3 from AlanT218/Dev-Alan
+[34m|[m[35m\[m  
+[34m|[m * [33m462b668[m Consumo de los servicios Actualizar, eliminar y cambiar estado de electrodomesticos a travez de js funcional
+[34m|[m * [33m8826c22[m Correcion de estilo en la vista Menu
+[34m|[m[34m/[m  
+*   [33med1c7ed[m Merge pull request #2 from AlanT218/dev-Alan
+[36m|[m[1;31m\[m  
+[36m|[m * [33m06aa979[m Modificacion de de estilo en vistas, GestioElect y GestionHogares, ademas se añadio Menu.
+[36m|[m[36m/[m  
+[36m|[m *   [33m763ac6f[m[33m ([m[1;35mrefs/stash[m[33m)[m On dev-Alan: Extrayendo QA del repositorio
+[36m|[m[36m/[m[1;33m|[m[1;34m\[m  
+[36m|[m [1;33m|[m * [33maf65f6c[m untracked files on dev-Alan: 582a674 Concumo del API para la Funcionalidad de Traer las casas enlazadas con el usuario a travez de su id y añadir eelectrodomesticos referenciando id_hogar y id_user
+[36m|[m * [33m5c45eb2[m index on dev-Alan: 582a674 Concumo del API para la Funcionalidad de Traer las casas enlazadas con el usuario a travez de su id y añadir eelectrodomesticos referenciando id_hogar y id_user
+[36m|[m[36m/[m  
+* [33m582a674[m Concumo del API para la Funcionalidad de Traer las casas enlazadas con el usuario a travez de su id y añadir eelectrodomesticos referenciando id_hogar y id_user
+*   [33mf638cff[m Merge pull request #1 from AlanT218/Dev-Alan
+[1;35m|[m[1;36m\[m  
+[1;35m|[m * [33m70f89b2[m Funcionalidad del consumo de la API desde Front en los metodos Login, CrearUser y ListarUsuarios completa con js y Manejo de excepciónes en la vista error
+[1;35m|[m[1;35m/[m  
+* [33m304fd54[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m Desarrollo Front-end de las vistas Login, CreateUser y index. Sin funcionalidad
+* [33mc533076[m Agregar archivos de proyecto.
+* [33m997eed8[m Agregar .gitattributes y .gitignore.

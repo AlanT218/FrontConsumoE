@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "GestionElec";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
@@ -11,7 +10,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Electrodomésticos</title>
-    
 </head>
 <body>
     <h1 class="titulo">Añadir Electrodomésticos</h1>
@@ -33,7 +31,7 @@
             </div>
 
             <div class="form-group">
-                <label for="consumo">Voltaje (W):</label>
+                <label for="consumo">Potencia (W):</label>
                 <input type="number" id="consumo" min="1" required>
             </div>
 
@@ -42,11 +40,37 @@
     </div>
     <button class="btn-volver" onclick="window.history.back()">⮐</button>
 
-    <script src="~/js/Dc/AgregarElecZona.js"></script>
-    
+    @section Scripts {
+        <script src="~/js/validadorSesion.js"></script>
+        <script src="~/js/Dc/AgregarElecZona.js?v=1.0.1"></script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const inputConsumo = document.getElementById("consumo");
+
+                inputConsumo.addEventListener("keydown", function (event) {
+                    // Bloquear letras como e, E, signos +/-, y el punto
+                    if (
+                        event.key === "e" ||
+                        event.key === "E" ||
+                        event.key === "+" ||
+                        event.key === "-" ||
+                        event.key === "."
+                    ) {
+                        event.preventDefault();
+                    }
+                });
+
+                inputConsumo.addEventListener("input", function () {
+                    // Eliminar cualquier caracter que no sea un número (si se pega algo)
+                    this.value = this.value.replace(/[^0-9]/g, '');
+                });
+            });
+        </script>
+    }
     <style>
         body {
-            background-image: url('/Img/fondo.jpeg');
+            background-image: url('/Img/PlanoReco.png');
             background-size: cover; /* para cubrir toda la pantalla */
             background-repeat: no-repeat;
             background-attachment: fixed; /* para que no se mueva al hacer scroll */

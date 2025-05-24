@@ -1,7 +1,8 @@
 ﻿@{
-  ViewData["Title"] = "Elimi";
+    ViewData["Title"] = "Elimi";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
+
 <link rel="stylesheet" href="/css/site.css">
 
 <!DOCTYPE html>
@@ -10,7 +11,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Actualizar o Eliminar Electrodomésticos</title>
-   
 </head>
 <body>
     <h1 class="titulo">Gestión de Electrodomésticos por Zona</h1>
@@ -20,15 +20,39 @@
             <tr>
                 <th>Zona</th>
                 <th>Electrodoméstico</th>
-                <th>Voltaje (W)</th>
+                <th>Potencia (W)</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody></tbody>
     </table>
+
     <button class="btn-volver" onclick="window.history.back()">⮐</button>
 
-    <script src="/js/Dc/ListarElimiar.js?v=1.0.1"></script>
+    @section Scripts {
+        <script src="~/js/validadorSesion.js"></script>
+        <script src="/js/Dc/ListarElimiar.js?v=1.0.1"></script>
+
+        <!-- Si llegas a tener campos tipo number dinámicos en acciones -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                document.addEventListener("input", function (event) {
+                    if (event.target.type === "number") {
+                        event.target.value = event.target.value.replace(/[^0-9]/g, '');
+                    }
+                });
+
+                document.addEventListener("keydown", function (event) {
+                    if (
+                        event.target.type === "number" &&
+                        ["e", "E", "+", "-", "."].includes(event.key)
+                    ) {
+                        event.preventDefault();
+                    }
+                });
+            });
+        </script>
+    }
 
     <style>
         body {

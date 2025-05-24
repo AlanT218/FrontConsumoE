@@ -29,6 +29,8 @@
         </div>
     </div>
 </div>
+<button class="btn-volver" onclick="window.history.back()">⮐</button>
+
 <style>
     html, body {
         height: 100%;
@@ -214,5 +216,7 @@
     }
 </style>
 
-<!-- JS -->
-<script src="~/js/Dc/gestionConsumo.js?v=1.0.4"></script>
+@section Scripts {
+    <script src="~/js/validadorSesion.js"></script>
+    <script src="~/js/Dc/gestionConsumo.js?v=1.0.4"></script>
+    }

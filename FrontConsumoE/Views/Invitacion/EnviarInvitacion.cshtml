@@ -1,0 +1,111 @@
+﻿@{
+    ViewData["Title"] = "EnviarInvitacion";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<link rel="stylesheet" href="/css/site.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/Scripts/popup.js"></script>  <!-- tu SweetAlert2 wrapper -->
+<script src="/js/Invitar/invitarUsuario.js?v=1.0.2"></script>  <!-- código que veremos a continuación -->
+
+<script src="~/js/validadorSesion.js"></script>
+    
+<div class="overlay-container">
+  <div class="box left-box">
+    <h1>Añadir Usuario</h1>
+
+    <label for="correo">Correo</label>
+    <input type="email" id="correo" placeholder="usuario@dominio.com" />
+
+    <label for="rol">Rol a Asignar</label>
+    <select id="rol">
+      <option value="" disabled selected>Seleccione</option>
+      <option value="Invitado">Invitado</option>
+      <option value="Familiar">Familiar</option>
+    </select>
+
+    <button id="btnInvitar">Agregar</button>
+  </div>
+
+  <div class="box right-box">
+        <h1>Hogar</h1>
+        <p><strong>Nombre:</strong> <span id="nombreHogar">Cargando...</span></p>
+        <p><strong>Tipo:</strong> <span id="tipoHogar">Cargando...</span></p>
+  </div>
+</div>
+<button class="btn-volver" onclick="window.history.back()">⮐</button>
+
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        overflow: hidden; /* ✅ Evita scroll vertical */
+        font-family: sans-serif;
+        background-color: #c4ecc4;
+        background-image: url('/Img/Enviar.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+    }
+
+    .overlay-container {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 8rem;
+        margin-top: 5rem;
+        margin-left: 2rem;
+    }
+
+    .box {
+        background-color: #ffffff;
+        border: 5px solid #a3ce83;
+        border-radius: 30px;
+        padding: 1.5rem;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+    }
+
+    .right-box {
+        margin-top: 2rem;
+    }
+
+    .box h1 {
+        font-size: 1.5rem;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .box label {
+        display: block;
+        margin-top: 1rem;
+        font-weight: bold;
+    }
+
+    .box input,
+    .box select {
+        width: 100%;
+        padding: 0.4rem;
+        border-radius: 8px;
+        border: 2px solid #aab3af;
+        margin-top: 0.3rem;
+    }
+
+    .box button {
+        margin-top: 1rem;
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        padding: 0.5rem;
+        background-color: #96ca50;
+        border: none;
+        color: white;
+        font-weight: bold;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+
+        .box button:hover {
+            background-color: #7ab63a;
+        }
+</style>
