@@ -42,8 +42,10 @@
     </div>
     <button class="btn-volver" onclick="window.history.back()">⮐</button>
 
-    <script src="~/js/Dc/actualizarZonaElectro.js"></script>
-
+    @section Scripts {
+        <script src="~/js/validadorSesion.js"></script>
+        <script src="~/js/Dc/actualizarZonaElectro.js?v=1.0.1"></script>
+    }
     <style>
         body {
             background-image: url('/Img/fondo.jpeg');
